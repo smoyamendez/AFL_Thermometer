@@ -1,0 +1,249 @@
+/* Arts For Life — Paint Tube Fundraiser
+   Shared styles for the public page (index.html) and admin (admin.html). */
+
+:root {
+  --ink: #2b2d42;
+  --outline: #1d1d1f;
+  --muted: #6b7088;
+  --subtle: #9aa0ad;
+  --blue: #1f9ec4;
+  --blue-hover: #17789a;
+  --tint: #e9f7fb;
+  --tint-border: #bfe6f1;
+  --page-tint: #eaf6fb;
+  --input-bg: #f8fafc;
+  --border: #e6edf4;
+  --success: #1c9e6a;
+  --success-bg: #e7f7f0;
+  --danger: #c96b6b;
+  --danger-border: #e0d4d4;
+  --ui-rainbow: linear-gradient(90deg, #ef5b5b, #f6934a, #f6c445, #58b368, #1f9ec4, #7b5ea7);
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--blue-hover); }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- page shell ---------- */
+.page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 56px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: radial-gradient(150% 100% at 50% -25%, var(--page-tint) 0%, #ffffff 52%);
+}
+.rainbow-strip {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 8px; z-index: 5;
+  background: var(--ui-rainbow);
+}
+.pill-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-weight: 700;
+  border-radius: 999px; background: var(--blue); color: #fff;
+  white-space: nowrap;
+}
+.pill-link:hover { background: var(--blue-hover); color: #fff; }
+
+.eyebrow {
+  font-family: var(--font-display); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue);
+}
+
+/* =====================================================================
+   PUBLIC PAGE
+   ===================================================================== */
+/* The public page fits the viewport with no scrolling: the page is locked to
+   the screen height, the header shrinks on short screens, and the tube scales
+   to whatever height is left in the card. */
+.page--fit {
+  height: 100vh; height: 100dvh; min-height: 0;
+  padding: clamp(20px, 5vh, 56px) 24px clamp(16px, 4vh, 48px);
+  overflow: hidden;
+}
+
+.hero { flex: none; text-align: center; max-width: 760px; margin-bottom: clamp(12px, 2.6vh, 26px); }
+.hero h1 { margin: 0 0 clamp(6px, 1.8vh, 18px); }
+.hero__logo {
+  display: block; margin: 0 auto;
+  width: auto; max-width: 100%;
+  height: clamp(56px, 17vh, 171px); /* 171px = 560px wide */
+}
+.hero__sub {
+  font-weight: 600; font-size: clamp(14px, min(2.2vw, 2.2vh), 20px); color: var(--muted);
+  margin: 0 auto; max-width: 560px;
+}
+
+.main-card {
+  flex: 1 1 0; min-height: 0;
+  width: 100%; max-width: 980px;
+  background: #ffffff; border-radius: 32px;
+  box-shadow: 0 30px 64px rgba(31,120,154,0.13), 0 2px 8px rgba(31,120,154,0.06);
+  padding: clamp(20px, min(4vw, 5vh), 52px);
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(24px, 5vw, 64px);
+}
+
+/* The tube is a single SVG in a 300×770 coordinate space. It takes the card's
+   full height (up to its natural 770px) and keeps its aspect ratio. */
+.tube { flex: none; height: 100%; max-height: 770px; aspect-ratio: 300 / 770; }
+.tube svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.tube__cover {
+  transition: transform 0.95s cubic-bezier(.22,.61,.36,1);
+}
+.tube__pct { font-family: var(--font-display); font-weight: 800; font-size: 44px; fill: var(--outline); }
+.tube__pct-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.18em; fill: var(--muted);
+}
+
+.stats { flex: none; min-width: 250px; max-width: 340px; }
+.stats__amount {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(40px, min(7.5vw, 9vh), 80px); line-height: 0.98;
+  color: var(--ink); margin: 6px 0;
+}
+.stats__goal { font-weight: 700; font-size: 19px; color: var(--muted); }
+
+/* Narrow screens: stack the stats under the tube; the tube takes the space
+   left over. */
+@media (max-width: 640px) {
+  .page--fit { padding-left: 16px; padding-right: 16px; }
+  .main-card { flex-direction: column; gap: 12px; border-radius: 24px; }
+  .tube { flex: 1 1 0; min-height: 0; height: auto; max-height: none; aspect-ratio: auto; width: 100%; }
+  .stats { min-width: 0; text-align: center; }
+  .stats__amount { font-size: clamp(32px, 6vh, 48px); margin: 2px 0; }
+  .stats__goal { font-size: 16px; }
+}
+
+/* Embedded mode (?embed=1): just the card, transparent background — for an
+   iframe on artsforlifenc.org. It fills the iframe's height. */
+.embed .page { padding: 16px; background: transparent; }
+.embed .rainbow-strip, .embed .hero { display: none; }
+.embed body, body.embed { background: transparent; }
+
+/* =====================================================================
+   ADMIN PAGE
+   ===================================================================== */
+.admin { width: 100%; max-width: 560px; }
+.admin__header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 22px;
+}
+.admin__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 5vw, 40px); margin: 5px 0 0; color: var(--ink);
+}
+.admin__header .pill-link { font-size: 14px; padding: 10px 16px; }
+
+.card {
+  background: #ffffff; border-radius: 22px; padding: 22px 24px;
+  box-shadow: 0 20px 44px rgba(31,120,154,0.12), 0 2px 6px rgba(31,120,154,0.05);
+  margin-bottom: 16px;
+}
+.card--preview { margin-bottom: 18px; }
+
+.preview__top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.preview__raised { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--ink); }
+.preview__goal { font-weight: 700; font-size: 17px; color: var(--muted); }
+.bar { height: 20px; border-radius: 999px; background: #eef2f7; overflow: hidden; }
+.bar__fill {
+  height: 100%; width: 0; border-radius: 999px;
+  background: linear-gradient(90deg, #ef5b5b, #f6934a 24%, #f6c445 44%, #58b368 62%, #1f9ec4 82%, #7b5ea7);
+  transition: width 0.5s cubic-bezier(.22,.61,.36,1);
+}
+.preview__bottom { display: flex; justify-content: space-between; margin-top: 10px; }
+.preview__pct { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--blue); }
+.preview__status { font-weight: 700; font-size: 14px; color: var(--subtle); }
+
+.field-label {
+  display: block; font-family: var(--font-display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.04em; color: var(--muted); margin-bottom: 9px; text-transform: uppercase;
+}
+.money { display: flex; align-items: center; gap: 8px; }
+.money__sign { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: #b4bac6; }
+.input {
+  flex: 1; width: 100%;
+  font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--ink);
+  padding: 10px 12px; border: 2px solid var(--border); border-radius: 14px; background: var(--input-bg);
+}
+.input:focus { outline: none; border-color: var(--blue); }
+.input--lg { font-weight: 800; font-size: 26px; padding: 11px 14px; }
+.money--raised { margin-bottom: 14px; }
+.money--goal { gap: 6px; }
+.money--goal .money__sign { font-size: 20px; }
+
+.quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  border-radius: 999px; cursor: pointer; border: 2px solid var(--border);
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.quick .btn { flex: 1; min-width: 70px; padding: 12px 0; }
+.btn--neutral { background: var(--input-bg); color: var(--ink); }
+.btn--neutral:hover:not(:disabled) { border-color: #d3dde8; }
+.btn--tint { background: var(--tint); border-color: var(--tint-border); color: var(--blue-hover); }
+.btn--tint:hover:not(:disabled) { border-color: var(--blue); }
+.btn--solid { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btn--solid:hover:not(:disabled) { background: var(--blue-hover); border-color: var(--blue-hover); }
+.btn--danger {
+  font-size: 14px; padding: 11px 18px;
+  border-color: var(--danger-border); background: transparent; color: var(--danger);
+}
+.btn--danger:hover:not(:disabled) { border-color: var(--danger); }
+
+.card--goal { margin-bottom: 18px; }
+
+.footer-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 2px 4px; margin-bottom: 18px;
+}
+.footer-row__note { font-weight: 700; font-size: 13px; color: var(--subtle); }
+.footer-row__note.is-error { color: var(--danger); }
+
+.sync {
+  display: flex; align-items: center; gap: 14px; padding: 16px 20px;
+  border-radius: 18px; background: #f1f3f7;
+}
+.sync__label { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--subtle); white-space: nowrap; }
+.sync__help { font-weight: 600; font-size: 13px; color: var(--muted); line-height: 1.4; }
+.sync.is-live { background: var(--success-bg); }
+.sync.is-live .sync__label { color: var(--success); }
+.sync.is-warn { background: #fdf3e7; }
+.sync.is-warn .sync__label { color: #b7702a; }
+.sync__signout {
+  margin-left: auto; font-family: var(--font-display); font-weight: 700; font-size: 13px;
+  background: none; border: 0; color: var(--muted); cursor: pointer; white-space: nowrap;
+}
+.sync__signout:hover { color: var(--ink); }
+
+/* sign-in */
+.signin { display: grid; gap: 14px; }
+.signin .input { font-family: var(--font-body); font-size: 17px; }
+.signin .btn { padding: 12px 0; }
+.signin__error { color: var(--danger); font-weight: 700; font-size: 14px; min-height: 1em; margin: 0; }
+.signin__intro { margin: 0 0 4px; color: var(--muted); font-weight: 600; font-size: 15px; line-height: 1.45; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 480px) {
+  .admin__header { flex-wrap: wrap; }
+  .sync { flex-wrap: wrap; }
+}

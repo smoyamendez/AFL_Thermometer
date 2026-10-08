@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Fundraiser Controls · Arts For Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="page">
+  <div class="rainbow-strip" aria-hidden="true"></div>
+
+  <div class="admin">
+    <header class="admin__header">
+      <div>
+        <div class="eyebrow">Arts For Life · Control panel</div>
+        <h1 class="admin__title">Fundraiser Controls</h1>
+      </div>
+      <a class="pill-link" href="./">View page →</a>
+    </header>
+
+    <!-- ===== SIGN IN (live mode only) ===== -->
+    <form class="card signin" id="signin" hidden novalidate>
+      <p class="signin__intro">Sign in with your Arts For Life staff account to update the fundraiser.</p>
+      <div>
+        <label class="field-label" for="email">Email</label>
+        <input class="input" id="email" type="email" autocomplete="username" required>
+      </div>
+      <div>
+        <label class="field-label" for="password">Password</label>
+        <input class="input" id="password" type="password" autocomplete="current-password" required>
+      </div>
+      <p class="signin__error" id="signin-error" role="alert"></p>
+      <button class="btn btn--solid" type="submit" id="signin-btn">Sign in</button>
+    </form>
+
+    <!-- ===== CONTROLS ===== -->
+    <div id="controls" hidden>
+      <div class="card card--preview">
+        <div class="preview__top">
+          <span class="preview__raised" id="p-raised">$0</span>
+          <span class="preview__goal">of <span id="p-goal">$0</span></span>
+        </div>
+        <div class="bar"><div class="bar__fill" id="p-bar"></div></div>
+        <div class="preview__bottom">
+          <span class="preview__pct"><span id="p-pct">0</span>% filled</span>
+          <span class="preview__status" id="p-status">In progress</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <label class="field-label" for="raised">Amount raised</label>
+        <div class="money money--raised">
+          <span class="money__sign" aria-hidden="true">$</span>
+          <input class="input input--lg" id="raised" type="number" min="0" step="1" inputmode="numeric">
+        </div>
+        <div class="quick">
+          <button class="btn btn--neutral" type="button" data-delta="-100">−$100</button>
+          <button class="btn btn--neutral" type="button" data-delta="-25">−$25</button>
+          <button class="btn btn--tint" type="button" data-delta="25">+$25</button>
+          <button class="btn btn--tint" type="button" data-delta="100">+$100</button>
+          <button class="btn btn--solid" type="button" data-delta="500">+$500</button>
+        </div>
+      </div>
+
+      <div class="card card--goal">
+        <label class="field-label" for="goal">Goal amount</label>
+        <div class="money money--goal">
+          <span class="money__sign" aria-hidden="true">$</span>
+          <input class="input" id="goal" type="number" min="1" step="1" inputmode="numeric">
+        </div>
+      </div>
+
+      <div class="footer-row">
+        <span class="footer-row__note" id="save-note" role="status">Saved automatically</span>
+        <button class="btn btn--danger" type="button" id="reset">Reset progress</button>
+      </div>
+    </div>
+
+    <div class="sync" id="sync">
+      <span class="sync__label" id="sync-label"></span>
+      <span class="sync__help" id="sync-help"></span>
+      <button class="sync__signout" type="button" id="signout" hidden>Sign out</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paint Fund · Arts For Life</title>
+<meta name="description" content="Every gift fills the tube — bringing art supplies to pediatric patients and families across North Carolina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="page page--fit">
+  <div class="rainbow-strip" aria-hidden="true"></div>
+
+  <header class="hero">
+    <h1><img class="hero__logo" src="assets/arts-for-life-logo.png" alt="Arts For Life — Inspiring Courage Through Creativity" width="785" height="240"></h1>
+    <p class="hero__sub">Every gift fills the tube — bringing art supplies to pediatric patients and families across North Carolina.</p>
+  </header>
+
+  <main class="main-card">
+
+    <!-- ===== PAINT TUBE ===== -->
+    <div class="tube" id="tube" role="progressbar" aria-label="Fundraising progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0% of goal">
+      <svg viewBox="0 0 300 770" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="tube-body"><path d="M30,110 L270,110 L240,600 L60,600 Z"/></clipPath>
+          <clipPath id="tube-label"><path d="M78,355 A72,72 0 1 0 222,355 A72,72 0 1 0 78,355 Z"/></clipPath>
+          <!-- Fixed to the full body height so colors don't compress as it fills. -->
+          <linearGradient id="tube-paint" gradientUnits="userSpaceOnUse" x1="0" y1="600" x2="0" y2="110">
+            <stop offset="0" stop-color="#d9412e"/>
+            <stop offset="0.16" stop-color="#ec7a2c"/>
+            <stop offset="0.32" stop-color="#f3cf3c"/>
+            <stop offset="0.44" stop-color="#a8c43d"/>
+            <stop offset="0.56" stop-color="#3f9a4b"/>
+            <stop offset="0.70" stop-color="#36a3b6"/>
+            <stop offset="0.84" stop-color="#3a5daf"/>
+            <stop offset="1" stop-color="#5a3a8c"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ground shadow -->
+        <ellipse cx="150" cy="752" rx="110" ry="8" fill="rgba(29,29,31,0.12)"/>
+
+        <!-- paint: the gradient fills the whole body; an "empty" cover slides up
+             to reveal it. Its bottom edge is the 5px paint surface line. -->
+        <g clip-path="url(#tube-body)">
+          <rect x="0" y="100" width="300" height="510" fill="url(#tube-paint)"/>
+          <g class="tube__cover" id="tube-cover">
+            <rect x="0" y="100" width="300" height="500" fill="#f4f1ec"/>
+            <rect x="0" y="600" width="300" height="5" fill="#1d1d1f"/>
+          </g>
+        </g>
+
+        <!-- shine + shade on body -->
+        <path d="M44,122 L58,122 L80,588 L71,588 Z" fill="rgba(255,255,255,0.55)"/>
+        <path d="M250,122 L262,122 L234,590 L224,590 Z" fill="rgba(0,0,0,0.14)"/>
+        <g stroke="#1d1d1f" stroke-width="3" stroke-linecap="round" fill="none">
+          <path d="M200,127 L254,123"/>
+          <path d="M222,138 L251,136"/>
+          <path d="M226,578 L246,565"/>
+          <path d="M60,590 L96,590"/>
+        </g>
+
+        <!-- body outline -->
+        <path d="M30,110 L270,110 L240,600 L60,600 Z" fill="none" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+
+        <!-- label -->
+        <path d="M78,355 A72,72 0 1 0 222,355 A72,72 0 1 0 78,355 Z" fill="#dcdcdf"/>
+        <path d="M70,345 A70,70 0 1 0 210,345 A70,70 0 1 0 70,345 Z" fill="#ffffff" clip-path="url(#tube-label)"/>
+        <path d="M78,355 A72,72 0 1 0 222,355 A72,72 0 1 0 78,355 Z" fill="none" stroke="#1d1d1f" stroke-width="5"/>
+        <text class="tube__pct" id="tube-pct" x="150" y="345" text-anchor="middle" dominant-baseline="central">0%</text>
+        <text class="tube__pct-label" x="152" y="380" text-anchor="middle" dominant-baseline="central">FILLED</text>
+
+        <!-- top seal cap -->
+        <path d="M24,22 H276 A8,8 0 0 1 284,30 V104 A8,8 0 0 1 276,112 H24 A8,8 0 0 1 16,104 V30 A8,8 0 0 1 24,22 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M228,25 H281 V109 H228 Z" fill="#dcdcdf"/>
+        <line x1="18" y1="84" x2="282" y2="84" stroke="#1d1d1f" stroke-width="5"/>
+        <g stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round">
+          <line x1="36" y1="34" x2="36" y2="72"/><line x1="52" y1="34" x2="52" y2="72"/><line x1="68" y1="34" x2="68" y2="72"/>
+          <line x1="84" y1="34" x2="84" y2="72"/><line x1="100" y1="34" x2="100" y2="72"/><line x1="116" y1="34" x2="116" y2="72"/>
+          <line x1="132" y1="34" x2="132" y2="72"/><line x1="148" y1="34" x2="148" y2="72"/><line x1="164" y1="34" x2="164" y2="72"/>
+          <line x1="180" y1="34" x2="180" y2="72"/><line x1="196" y1="34" x2="196" y2="72"/><line x1="212" y1="34" x2="212" y2="72"/>
+          <line x1="228" y1="34" x2="228" y2="72"/><line x1="244" y1="34" x2="244" y2="72"/><line x1="260" y1="34" x2="260" y2="72"/>
+        </g>
+        <path d="M24,22 H276 A8,8 0 0 1 284,30 V104 A8,8 0 0 1 276,112 H24 A8,8 0 0 1 16,104 V30 A8,8 0 0 1 24,22 Z" fill="none" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+
+        <!-- bottom shoulder -->
+        <path d="M60,600 L240,600 C236,628 214,646 196,652 L104,652 C86,646 64,628 60,600 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M200,604 L236,604 C232,626 216,642 200,648 Z" fill="#dcdcdf"/>
+        <path d="M68,614 L150,614" stroke="#1d1d1f" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- nozzle cap -->
+        <path d="M113,652 H187 A9,9 0 0 1 196,661 V727 A9,9 0 0 1 187,736 H113 A9,9 0 0 1 104,727 V661 A9,9 0 0 1 113,652 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M170,655 H193 V733 H170 Z" fill="#dcdcdf"/>
+        <line x1="106" y1="672" x2="194" y2="672" stroke="#1d1d1f" stroke-width="4"/>
+        <g stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round">
+          <line x1="120" y1="682" x2="120" y2="724"/><line x1="134" y1="682" x2="134" y2="724"/><line x1="148" y1="682" x2="148" y2="724"/>
+          <line x1="162" y1="682" x2="162" y2="724"/><line x1="176" y1="682" x2="176" y2="724"/>
+        </g>
+        <path d="M113,652 H187 A9,9 0 0 1 196,661 V727 A9,9 0 0 1 187,736 H113 A9,9 0 0 1 104,727 V661 A9,9 0 0 1 113,652 Z" fill="none" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats" aria-live="polite">
+      <div class="eyebrow">Raised so far</div>
+      <div class="stats__amount" id="raised">$0</div>
+      <div class="stats__goal">of <span id="goal">$0</span> goal</div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="js/public.js"></script>
+</body>
+</html>
