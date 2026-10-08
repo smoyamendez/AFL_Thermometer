@@ -7,12 +7,12 @@
 
 // Firebase Realtime Database URL,
 // e.g. "https://afl-paint-fund-default-rtdb.firebaseio.com"
-export const FIREBASE_DB_URL = "";
+export const FIREBASE_DB_URL = "https://afl-thermometer-default-rtdb.firebaseio.com/";
 
 // Firebase Web API key (Project settings → General → Web API key).
 // Used only for staff sign-in on the admin page. It is not a secret;
 // the database rules are what keep writes staff-only.
-export const FIREBASE_API_KEY = "";
+export const FIREBASE_API_KEY = "AIzaSyBgdhpEgnwhqZB5vmzMNRqo11zbz5zBRT0";
 
 // Placeholder values (from the design). Shown until the database has a record,
 // and used to seed an empty database. Staff can change them from the admin page.
